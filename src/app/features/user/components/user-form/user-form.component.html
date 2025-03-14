@@ -1,0 +1,75 @@
+<!--User Form : Reactive Form -->
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="container mt-4 p-4 border rounded shadow bg-light">
+  <h2 class="text-center mb-4">Formulaire Utilisateur</h2>
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Nom:</label>
+    <input type="text" id="name" formControlName="name" class="form-control"/>
+    <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+      <small *ngIf="userForm.get('name')?.hasError('required')">Le nom est requis.</small>
+      <small *ngIf="userForm.get('name')?.hasError('minlength')">Le nom doit contenir au moins 3 caractères.</small>
+    </div>
+
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label>">Email:</label>
+    <input type="email" id="email" formControlName="email" class="form-control"/>
+    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+      <small *ngIf="userForm.get('email')?.hasError('required')">L\'email est requis.</small>
+      <small *ngIf="userForm.get('email')?.hasError('email')">Veuillez entrer un email valide.</small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="age" class="form-label>">Âge:</label>
+    <input type="number" id="age" formControlName="age" class="form-control"/>
+    <div *ngIf="userForm.get('age')?.invalid && userForm.get('age')?.touched">
+      <small *ngIf="userForm.get('age')?.hasError('required')">L\'âge est requis.</small>
+      <small *ngIf="userForm.get('age')?.hasError('min')">L\'âge doit être supérieur à 18 ans.</small>
+      <small *ngIf="userForm.get('age')?.hasError('max')">L\'âge doit être inférieur à 100 ans.</small>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary px-4" [disabled]="userForm.invalid">Soumettre</button>
+  </div>
+</form>
+
+
+<!--User Form : Template Driven Form -->
+<!--
+<form #userForm="ngForm" (ngSubmit)="onSubmit()" class="container mt-4 p-4 border rounded shadow bg-light">
+  <h2 class="text-center mb-4">Formulaire Utilisateur</h2>
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Nom:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" class="form-control" required minlength="3">
+    <div *ngIf="name.invalid && name.touched" class="text-danger">
+      <small *ngIf="name.errors?.['required']">Le nom est requis.</small>
+      <small *ngIf="name.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" class="form-control" required email>
+    <div *ngIf="email.invalid && email.touched" class="text-danger">
+      <small *ngIf="email.errors?.['required']">L'email est requis.</small>
+      <small *ngIf="email.errors?.['email']">Veuillez entrer un email valide.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="age" class="form-label">Âge:</label>
+    <input type="number" id="age" name="age" [(ngModel)]="user.age" #age="ngModel" class="form-control" required min="18" max="100">
+    <div *ngIf="age.invalid && age.touched" class="text-danger">
+      <small *ngIf="age.errors?.['required']">L'âge est requis.</small>
+      <small *ngIf="age.errors?.['min']">L'âge doit être supérieur à 18 ans.</small>
+      <small *ngIf="age.errors?.['max']">L'âge ne peut pas dépasser 100 ans.</small>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary px-4" [disabled]="userForm.invalid">Soumettre</button>
+  </div>
+</form>
+
+-->

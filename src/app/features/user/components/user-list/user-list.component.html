@@ -1,0 +1,13 @@
+<div class="container">
+  <ul>
+    @for (item of (users|async); track item) {
+    <li class="box">
+      <p class="item">{{item.name}}</p>
+      <p class="item">{{item.email}}</p>
+      <button class="button is-danger" (click)="deleteUser(item.id)">delete</button>
+    </li>
+  }
+  </ul>
+
+
+</div>
